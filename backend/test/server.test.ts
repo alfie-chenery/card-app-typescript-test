@@ -16,7 +16,6 @@ afterAll(async () => {
 });
 
 describe("Server API tests", () => {
-  
   describe("GET /get/", () => {
     it("should retrieve all entries (none)", async () => {
       const response = await server.inject({
@@ -47,9 +46,14 @@ describe("Server API tests", () => {
     });
 
     it("should retrieve all entries (many)", async () => {
-      for(let i=0; i<17; i++){
+      for (let i = 0; i < 17; i++) {
         await Prisma.entry.create({
-          data: { title: `Test Entry #${i}`, description: "This is a test", created_at: new Date(), due_at: new Date() },
+          data: {
+            title: `Test Entry #${i}`,
+            description: "This is a test",
+            created_at: new Date(),
+            due_at: new Date(),
+          },
         });
       }
 
@@ -101,7 +105,12 @@ describe("Server API tests", () => {
 
   describe("POST /create/", () => {
     it("should create a new entry", async () => {
-      const newEntry = { title: "New Entry", description: "Created via test", created_at: new Date(), due_at: new Date() };
+      const newEntry = {
+        title: "New Entry",
+        description: "Created via test",
+        created_at: new Date(),
+        due_at: new Date(),
+      };
 
       const response = await server.inject({
         method: "POST",
@@ -134,7 +143,12 @@ describe("Server API tests", () => {
   describe("DELETE /delete/:id", () => {
     it("should delete an entry by ID", async () => {
       const entry = await Prisma.entry.create({
-        data: { title: "Entry to Delete", description: "This will be deleted", created_at: new Date(), due_at: new Date() },
+        data: {
+          title: "Entry to Delete",
+          description: "This will be deleted",
+          created_at: new Date(),
+          due_at: new Date(),
+        },
       });
 
       const response = await server.inject({
@@ -144,7 +158,7 @@ describe("Server API tests", () => {
 
       expect(response.statusCode).toBe(200);
       expect(response.json()).toEqual({ msg: "Deleted successfully" });
-      
+
       const checkEntry = await Prisma.entry.findUnique({ where: { id: entry.id } });
       expect(checkEntry).toBeNull();
     });
@@ -163,7 +177,12 @@ describe("Server API tests", () => {
   describe("PUT /update/:id", () => {
     it("should update an existing entry", async () => {
       const entry = await Prisma.entry.create({
-        data: { title: "Initial Title", description: "Initial description", created_at: new Date(), due_at: new Date() },
+        data: {
+          title: "Initial Title",
+          description: "Initial description",
+          created_at: new Date(),
+          due_at: new Date(),
+        },
       });
 
       const updatedData = { ...entry, title: "Updated Title", description: "Updated description" };
