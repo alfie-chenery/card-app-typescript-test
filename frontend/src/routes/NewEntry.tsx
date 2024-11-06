@@ -13,7 +13,7 @@ export default function NewEntry() {
       [event.target.name]: event.target.value,
     });
   };
-  
+
   const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
     saveEntry(newEntry);
     setNewEntry(emptyEntry);

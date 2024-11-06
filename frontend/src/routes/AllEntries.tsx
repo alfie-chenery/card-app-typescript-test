@@ -31,7 +31,19 @@ export default function AllEntries() {
             <h1 className="font-bold text-sm md:text-lg">{entry.title}</h1>
             <p className="text-center text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3">{entry.description}</p>
             <section className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
-              <div className="flex justify-center">
+              <span className="text-sm md:text-lg font-medium">Start date:</span>
+              <time className="text-right text-sm md:text-lg">
+                {new Date(entry.created_at.toString()).toLocaleDateString()}
+              </time>
+            </section>
+            <section className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
+              <span className="text-sm md:text-lg font-medium">Due date:</span>
+              <time className="text-right text-sm md:text-lg">
+                {new Date(entry.due_at.toString()).toLocaleDateString()}
+              </time>
+            </section>
+            <section className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
+              <div className="flex justify-end w-full">
                 <button
                   onClick={() => {
                     deleteEntry(entry.id as string);
@@ -49,9 +61,6 @@ export default function AllEntries() {
                   🖊
                 </button>
               </div>
-              <time className="text-right text-sm md:text-lg">
-                {new Date(entry.created_at.toString()).toLocaleDateString()}
-              </time>
             </section>
           </div>
         );
