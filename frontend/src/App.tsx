@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from './components/NavBar'
+import ThemeToggle from "./components/ThemeToggle";
 import AllEntries from './routes/AllEntries'
 import NewEntry from './routes/NewEntry'
 import EditEntry from './routes/EditEntry'
@@ -12,20 +13,21 @@ import {
 
 export default function App() {
   return (
-    <section>
-  <Router>
-    <EntryProvider>
-    <NavBar></NavBar>
-      <Routes>
-        <Route path="/" element={<AllEntries/>}>
-        </Route>
-        <Route path="create" element={<NewEntry/>}>
-        </Route>
-        <Route path="edit/:id" element={<EditEntry/>}>
-        </Route>
-      </Routes>
-    </EntryProvider>
-    </Router>
+    <section className="bg-white dark:bg-gray-900 min-h-screen">
+      <Router>
+        <EntryProvider>
+        <NavBar></NavBar>
+        <ThemeToggle></ThemeToggle>
+          <Routes>
+            <Route path="/" element={<AllEntries/>}>
+            </Route>
+            <Route path="create" element={<NewEntry/>}>
+            </Route>
+            <Route path="edit/:id" element={<EditEntry/>}>
+            </Route>
+          </Routes>
+        </EntryProvider>
+      </Router>
     </section>
     
   );
