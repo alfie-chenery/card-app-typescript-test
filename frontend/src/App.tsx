@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AllEntries from "./routes/AllEntries";
@@ -8,6 +8,17 @@ import Settings from "./routes/Settings";
 import { EntryProvider } from "./utilities/globalContext";
 
 export default function App() {
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const theme = savedTheme ? savedTheme : "light"; // Default to light mode
+
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, []);
+
   return (
     <section className="bg-white dark:bg-gray-900 min-h-screen">
       <Router>
