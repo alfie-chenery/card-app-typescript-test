@@ -15,6 +15,12 @@ export default function NavBar() {
       >
         New Entry
       </NavLink>
+      <NavLink
+        className="m-3 p-4 text-xl bg-blue-400 hover:bg-blue-500 dark:bg-gray-800 dark:hover:bg-blue-900 rounded-md font-medium text-white"
+        to={"/settings"}
+      >
+        Settings
+      </NavLink>
     </nav>
   );
 }
