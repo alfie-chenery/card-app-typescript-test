@@ -12,6 +12,12 @@ apply to the whole website, we can set the top level document to be dark, and th
 
 To impement the toggle, a component is created which handles the logic for applying the dark tag to the document, and returns a React component for displaying a toggle slider. I then added a settings page which currently only holds this toggle, and added the settings page to the navigation bar.
 
-All commits implementing this feature took aproximately 45 minutes.
+All commits implementing this feature took aproximately 50 minutes.
 
 ### Adding a scheduled date
+
+To add a due date to the cards I updated the Prisma schema to add a new database column and the type interface for Entry to include this extra date field.
+It was important to add a default value in the Prisma schema, so that entries made prior to this change (where this column was not present) can be apropriately filled in.
+After this I modified the backend server to correctly handle this new date field, and finally updated the front end to display the information on the cards
+
+All commits implementing this feature took aproximately 40 minutes.

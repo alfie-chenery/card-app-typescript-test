@@ -8,7 +8,7 @@ export default function ThemeToggle() {
   });
 
   const handleToggleChange = () => {
-    const newTheme = (theme === "light" ? "dark" : "light")
+    const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
 
