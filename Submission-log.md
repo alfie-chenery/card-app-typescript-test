@@ -21,3 +21,7 @@ It was important to add a default value in the Prisma schema, so that entries ma
 After this I modified the backend server to correctly handle this new date field, and finally updated the front end to display the information on the cards
 
 All commits implementing this feature took aproximately 40 minutes.
+
+### Adding a backend test suite
+
+I added the test suite to the ```backend\test\server.text.ts``` file.
