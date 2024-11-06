@@ -24,4 +24,4 @@ All commits implementing this feature took aproximately 40 minutes.
 
 ### Adding a backend test suite
 
-I added the test suite to the ```backend\test\server.text.ts``` file.
+I added the test suite to the `backend\test\server.text.ts` file.
