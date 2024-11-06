@@ -6,10 +6,8 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(() => {
     return (localStorage.getItem("theme") as Theme) || "light";
   });
-  // default to local storgage value, or light if no value stored
 
   useEffect(() => {
-    // Add 'dark' class to the root element if the theme is dark
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -19,16 +17,30 @@ export default function ThemeToggle() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  function toggleTheme() {
+  const handleToggleChange = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  }
+  };
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="m-3 p-4 text-xl bg-blue-400 hover:bg-blue-500 dark:bg-gray-700 dark:hover:bg-blue-900 rounded-md font-medium text-white"
-    >
-      {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
-    </button>
+    <div className="flex items-center space-x-3">
+      <span className="text-lg">Dark Mode:</span>
+      <label htmlFor="dark-mode-toggle" className="flex items-center cursor-pointer">
+        <div className="relative">
+          <input
+            id="dark-mode-toggle"
+            type="checkbox"
+            checked={theme === "dark"}
+            onChange={handleToggleChange}
+            className="sr-only"
+          />
+          <div className="block bg-gray-400 w-12 h-6 rounded-full"></div>
+          <div
+            className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${
+              theme === "dark" ? "transform translate-x-6" : ""
+            }`}
+          ></div>
+        </div>
+      </label>
+    </div>
   );
 }
